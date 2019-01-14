@@ -1,4 +1,4 @@
-# Identity User Access 101
+# Identity and Access Management 101
 
     - IAM is used to manage users' level of access to the AWS Console
     - IAM provides centralised control of your AWS account
