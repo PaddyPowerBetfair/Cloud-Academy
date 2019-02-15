@@ -40,7 +40,7 @@
     - Route 53 is Amazon's DNS Service
     - Route 53 allows your domain name to be mapped to EC2, Load Balancers or S3 Buckets
     
-## CLI
+## CLI, Roles and Policies
     - Use the practice of Least Privilege
     - Assign permissions to groups using Policy documents
     - Assign Users to Groups
@@ -51,5 +51,45 @@
     - Roles are contolled by Policies
     - You can change a policy on a role and it will take immediate effect.
     - You can attach/detach roles to a running EC2 instance without stopping or terminating the EC2 instance.
+    
+## Volumes
+    - Boot Volumes can be encrypted using Operating System level tools such as Windows Bitlocker
+    - Boot Volumes can also be encrypted by:
+      1) Take a snapshot, 2) Copy the snapshot with encryption, 3) Make an AMI from the encrypted snapshot, 4) Deploy a new instance from the new AMI.
+    - You can encrypt additional attahced volumes using the AWS Console, CLI or API.
+
+## Databases 101
+    - RDS is used for OLTP
+    - Redshift is used for OLAP
+    - DynamoDb is a NoSQL DB.
+    - Elasticache is a AWS's caching service as a Managed Service.
+
+## RDS
+    - RDS is used for OLTP
+    - RDS offerings are SQL Server, MySql, MariaDb, Postgres, Oracle and Aurora.
+    - RDS Multi AZ is used for Disaster Recovery
+    - RDS Read Replicas are used for scaling of read-only capacity, not DR.
+    - To use Read Replicas, you must have backups enabled.
+    - Up to 5 Read Replicas of a DB can be created.
+    - Each Read Replica has its own DNS entry.
+    - You can create Read replicas multi-az databases.
+    - Each read replica can have multi-az enabled.
+    - A Read replica can be promoted to its own database.
+    - You can have a read replica instance in a second region for MariaDB and MySql.
+    
+## Elasticache
+    - Used if your DB is under stress.
+    - MemcacheD or Redis.
+    - MemcacheD is used for simple object caching
+    - MemcacheD is used if you want a simple caching solution.
+    - MemcacheD scales out horizontally.
+    - Redis uses advanced datatypes such as Set, Lists, Hashes.
+    - Redis is used for ranking and leaderboard applications.
+    - Redis has data persistence.
+    - Redis support multi az.
+    - Redis has pub/sub capabilities.
+
+
+    
     
     
