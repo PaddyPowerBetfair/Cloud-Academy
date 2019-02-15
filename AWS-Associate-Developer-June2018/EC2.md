@@ -29,18 +29,18 @@
     - Magnetic Cold HDD - Not bootable - File servers - Less frequently accessed data
     - Magnetic - Botable - Old generation.
     
-# Load Balancers
+## Load Balancers
     - Application Load Balancer
     - Network Load Balancer
     - Elastic or Classic Load Balancer
     - 504 Gateway Timeout suggests that the application behind the LB may be unavailable
     - Use X-Forwarded-For HTTP Header if you want your application to see the IP address of the computer that originated the request.
     
-# Route 53
+## Route 53
     - Route 53 is Amazon's DNS Service
     - Route 53 allows your domain name to be mapped to EC2, Load Balancers or S3 Buckets
     
-# CLI
+## CLI
     - Use the practice of Least Privilege
     - Assign permissions to groups using Policy documents
     - Assign Users to Groups
