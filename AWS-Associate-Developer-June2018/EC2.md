@@ -38,5 +38,18 @@
     
 # Route 53
     - Route 53 is Amazon's DNS Service
+    - Route 53 allows your domain name to be mapped to EC2, Load Balancers or S3 Buckets
+    
+# CLI
+    - Use the practice of Least Privilege
+    - Assign permissions to groups using Policy documents
+    - Assign Users to Groups
+    - When a user is created, the Access Key and Secret Access Key are used to allow access to the CLI and API.
+    - When a user is created, the Access Key and Secret Access Key are only seen once.
+    - If the AK or SAK are lost then they can be regenerated.
+    - Roles allow users to not have to rely on AK and SAK.
+    - Roles are contolled by Policies
+    - You can change a policy on a role and it will take immediate effect.
+    - You can attach/detach roles to a running EC2 instance without stopping or terminating the EC2 instance.
     
     
