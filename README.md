@@ -1,2 +1,4 @@
 # Cloud-Academy
-Notes for group study of cloud technologies
+
+A collection of notes for the AWS Associate Developer (June 2018) Course based on the acloud.guru course.
+
