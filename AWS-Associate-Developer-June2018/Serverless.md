@@ -40,3 +40,24 @@
     Browser makes an HTTP `OPTIONS` call for a URL.
     Server returns "ERROR - Origin policy cannot be read at the remote resource".
     The above error means you need to enable CORS.
+
+## Lamdba Function Triggers
+
+## Lamba Version Control
+    You can publish one or more versions of your lambda function.
+    Each version of your function will have a different ARN.
+    Only the `$LATEST`version of your function may be edited.  All other versions cannot be edited.
+    `Qualified ARN`s include the version of your lambda function.
+    `Unqualified ARN`s do not end with the version of your function.
+    You can create an alias for particular versions.
+    For example: `v1` can be aliased as `Production`.  
+    This allows you to use `Production` as your reference to the version you wish to use.  When you wish to upgrade from `v1` to `v2` then reassign the `Production` alias from `v1` to `v2s include the version of your lambda function.
+    `Unqualified ARN`s do not end with the version of your function.
+    You can create an alias for particular versions.
+    For example: `v1` can be aliased as `Production`.  
+    This allows you to use `Production` as your reference to the version you wish to use.  When you wish to upgrade from `v1` to `v2` then reassign the `Production` alias from `v1` to `v2`.
+    You can send a percentage of traffic to one alias and the remaining traffic to another alias.
+    The `$LATEST` version of your lambda function may not be used to split traffic.
+    You can split traffic between two versions only.
+    You can delete versions of your lambda function.
+
