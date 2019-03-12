@@ -66,14 +66,25 @@
     Step Functions provides a UI to arrange and visualise the components of your application as a series of steps.
     This makes it simple to build and run multistep applications.
     Step Functions automatically triggers and tracks each step.
-    Step Functions retries steps when there are error so your application executes in order and as expect
-ed.
+    Step Functions retries steps when there are error so your application executes in order and as expected.
     Step Functions logs the state of each step.
     You define the steps of your workflow in the JSON-based Amazon States Language.
-    After you have defined your sequence of steps in JSON, you hit "Create Resources" which will create A
-WS resources based on a CloudFormation template.
+    After you have defined your sequence of steps in JSON, you hit "Create Resources" which will create AWS resources based on a CloudFormation template.
     You then assign a name for this execution run of your steps.
     The Step Functions UI will then visualise your running application and show the full event history.
     To delete your Step Functions flow, open Cloud Formation and delete the associated Cloud Formation stack.
+
+## X-Ray
+
+## Advanced API Gateway
+    You can import APIs from Swagger v2.0 definition files.
+    APIs can be imported into AWS by sending a Swagger v2.0 definition file via a `POST` request.
+    And existing API can be updated by sending a Swagger v2.0 definition file via a `PUT` request.
+
+    API Gateway limits the steady-state request limit to 10,000 requests per second.
+    The maximum concurrent requests is 5000 requests across all APIs within an AWS account.
+    If you exceed either limit, you will receive a `49 Too Many Requests` error response.
+
+    API Gateway can be configured as a SOAP Gateway passthrough.
 
 
