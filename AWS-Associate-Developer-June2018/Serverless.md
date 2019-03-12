@@ -61,3 +61,19 @@
     You can split traffic between two versions only.
     You can delete versions of your lambda function.
 
+## Step Functions
+    Step Functions allows you to visualise and test your serverless applications.
+    Step Functions provides a UI to arrange and visualise the components of your application as a series of steps.
+    This makes it simple to build and run multistep applications.
+    Step Functions automatically triggers and tracks each step.
+    Step Functions retries steps when there are error so your application executes in order and as expect
+ed.
+    Step Functions logs the state of each step.
+    You define the steps of your workflow in the JSON-based Amazon States Language.
+    After you have defined your sequence of steps in JSON, you hit "Create Resources" which will create A
+WS resources based on a CloudFormation template.
+    You then assign a name for this execution run of your steps.
+    The Step Functions UI will then visualise your running application and show the full event history.
+    To delete your Step Functions flow, open Cloud Formation and delete the associated Cloud Formation stack.
+
+
