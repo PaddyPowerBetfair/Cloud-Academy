@@ -85,5 +85,38 @@
     Scan will scan 1 partition at a time.
     A dynamo table or index can be logically divided into segments.  Segments can then be scanned in parallel.
     
+## Provisioned Throughput
+    Throughput is measured in Capacity Units.
     
+    1 Write Capacity Unit = 1 * 1KB write per second
+    1 Read Capacity Unit = 1 * 4KB Strongly Consistent reads per second
+                        OR 2 * 4KB Eventually Consistent reads per second
+    Eventually consistent reads are the default.
+    
+    Example:
+    A table with 5RCU and 5 WCU:
+      5 * 4KB Strongly Consistent Reads = 20 KB per second
+      10 * 4KB Eventually Consistent Reads = 40 KB per second.
+      6 * 1KB Writes = 5 KB per second
+    
+    Example 1:
+    You need to read 80 items per second.
+    You need Strongly Consistent Reads.
+    Each item is 2KB in size.
+    What is the required RCU of your table?
+    
+    Answer:
+    3KB / 4KB = 0.75 (rounded up becomes 1).
+    So each read will need 1 RCU.
+    The question states we need to read 80 items so we need 80 RCU for strongly consistent reads.
+    To calculate Eventually Consistent Reads, we divide 80 by 2.  40 RCU for eventually consistent reads.
+    
+    Example 2:
+    You need to write 100 items per second.
+    Each item is 512 bytes.
+    
+    Answer:
+    512 bytes / 1KB = 0.5 (rounded up become 1)
+    So each write needs 1 WCU.
+    If we need to write 100 writes per second then our answer is 100 WCU.
     
