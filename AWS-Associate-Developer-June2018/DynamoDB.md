@@ -39,3 +39,19 @@
     Aside: Recall that an IAM policy has 3 sections: 'Effect', 'Action' and 'Resource'.  'Condition' is also a section in an IAM Policy.
     
     
+## Dynamo DB Indexes
+    Indexes allow you to perform fast queries against specific columns.
+    
+    Local Secondary Indexes:
+    * can only be created when the table is created
+    * cannot be added, removed or modified
+    * use the same partition key as your table
+    * use a different sort key
+    
+    Global Secondary Indexes:
+    * are more flexible
+    * can be created AT or AFTER table creation
+    * can be based on a different partition key and different sort key to the partition key of your table.
+    
+## Scans and Queries
+    
