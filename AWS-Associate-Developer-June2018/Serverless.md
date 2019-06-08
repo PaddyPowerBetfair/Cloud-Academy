@@ -42,13 +42,36 @@
     The above error means you need to enable CORS.
 
 ## Lamdba Function Triggers
+    Services that Lambda reads events from:
+      Kineses
+      DynamoDb
+      SQS
+    
+    Services that invoke Lambda functions synchronously:
+      Application Load Balancer
+      Cognito
+      Lex
+      Alexa
+      API Gateway
+      Cloudfront
+      Kinesis Data Firehose
+      
+    Services that invoke Lambda functions asynchronously:
+      S3
+      SNS
+      SES
+      CloudFormation
+      CloudWatch Logs
+      CloudWatch Events
+      CodeCommkit
+      AWS Config
 
 ## Lamba Version Control
     You can publish one or more versions of your lambda function.
     Each version of your function will have a different ARN.
     Only the `$LATEST`version of your function may be edited.  All other versions cannot be edited.
-    `Qualified ARN`s include the version of your lambda function.
-    `Unqualified ARN`s do not end with the version of your function.
+    Qualified ARN`s include the version of your lambda function.
+    Unqualified ARN`s do not end with the version of your function.
     You can create an alias for particular versions.
     For example: `v1` can be aliased as `Production`.  
     This allows you to use `Production` as your reference to the version you wish to use.  When you wish to upgrade from `v1` to `v2` then reassign the `Production` alias from `v1` to `v2s include the version of your lambda function.
