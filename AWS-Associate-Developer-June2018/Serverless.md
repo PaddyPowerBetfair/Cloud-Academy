@@ -98,6 +98,25 @@
     To delete your Step Functions flow, open Cloud Formation and delete the associated Cloud Formation stack.
 
 ## X-Ray
+    XRay is a service that collects data about requests to your serverless application.
+    XRay provides visualisation tools you can use to optimise your serverless application.
+    You can view the request, your application's response and any calls your app makes downstream to other services, DBs, http endpoints.
+    The XRay SDK is installed in your application.
+    The XRay SDK instruments incoming calls and outgoing calls to HTTP services or AWS services. 
+    The XRay SDK sends data to the XRay Daemon.
+    The XRay Daemon forwards the data to the XRay API.
+    The XRay Daemon can be installed on Linux, Windows or MacOS.
+    The AWS XRay console interacts with the XRay API to produce a visualisation of your application.
+    
+    XRay integrates with
+    * Elastic Load Balancers
+    * AWS Lambda
+    * API Gateway
+    * EC2
+    * Elastic Beanstalk
+    
+    XRay supported languages:
+    * Java, Go, NodeJS, Python, Ruby, .NET
 
 ## Advanced API Gateway
     You can import APIs from Swagger v2.0 definition files.
