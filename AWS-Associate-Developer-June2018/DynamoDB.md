@@ -53,5 +53,37 @@
     * can be created AT or AFTER table creation
     * can be based on a different partition key and different sort key to the partition key of your table.
     
-## Scans and Queries
+## Queries and Scans
+### Queries
+    A Query is a search based on the primary key and a distinct value to search for.
+    E.g. Find * where userId = 212;
+   
+    A Query may also include a sort key to refine the results.
+    E.g. Find * where userId = 212 and lastLogin > 7 days;
+    
+    A Query returns all attributes of an item by default.
+    You may also use a Projection Expression which allows you to return certain attributes. 
+    
+    Results are sorted by sort key.
+    Numerics are sorted in ascesing order by default.
+    Set 'ScanIndexForward' to false if you want to reverse the order of the results.
+    
+    Queries are Eventually Consistent by default.
+    Queriues can be set to be Strongly Consistent.
+    
+### Scans
+    By default, scans return all items in the table.
+    A Projection Expression can also be used to specify certain results.
+    
+    Queries are more efficient than Scans.
+    Scans dump the entire table and then apply a filter to the results.
+    As the table size grows, scans become inefficient and expensive.
+    You can set the page size to limit the number of rows returned at a time.
+    Setting the page size only improves performance because other DB operations are not blocked.
+    
+    Scans retrieve 1 MB of data at a time.
+    Scan will scan 1 partition at a time.
+    A dynamo table or index can be logically divided into segments.  Segments can then be scanned in parallel.
+    
+    
     
