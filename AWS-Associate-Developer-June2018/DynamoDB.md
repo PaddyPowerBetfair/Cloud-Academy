@@ -120,3 +120,19 @@
     So each write needs 1 WCU.
     If we need to write 100 writes per second then our answer is 100 WCU.
     
+ ## DymanoDB Accelerator (DAX)
+    DAX is a fully managed, clustered, in-memory cache for Dynamo.
+    Read use-cases only.
+    Up to 10x performance gains.
+    Useful for burst-reads (Black Friday) or read-heavy apps.
+    
+    DAX is a write-through cache.
+    Data is written to the cache at the same time as the Dynamo backend.
+    Allows you to point your Dynamo API at the DAX cluster.
+    If your read operation is a cache-miss, DAX performs an Eventually Consistent read from Dynamo DB.
+    
+    Could reduce your provisioned Read Capacity of your Dynamo DB.
+    Read Intensive apps only - Not needed if you don't need low-latency of your reads.
+    
+    
+    
