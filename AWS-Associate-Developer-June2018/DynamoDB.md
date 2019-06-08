@@ -134,5 +134,30 @@
     Could reduce your provisioned Read Capacity of your Dynamo DB.
     Read Intensive apps only - Not needed if you don't need low-latency of your reads.
     
+## Elasticache
+    Sits between your application and Dynamo.
+    Suitable for read-heavy workloads.
+    Takes the read load off Dynamo.
+    Good for compute-heavy workloads because the output of computations can be cached.
     
+    2 types of Elasticache
+    * MemcacheD
+    * Redis
+    
+### MemcacheD
+    Object caching system
+    Multithreaded
+    No multi-az capability (not clustered)
+    If you lose your memcached service then it's gone.
+    
+### Redis
+    In-memory key-value store
+    Supports complex structs like sorted sets and lists.
+    Supports master/slave replication
+    Supports multi-az for cross AZ redundancy
+    Good if you want your cache to be resilient.
+    
+### Caching Strategies
+    Lazy Loading
+    Write-through strategy
     
