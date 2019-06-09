@@ -158,6 +158,31 @@
     Good if you want your cache to be resilient.
     
 ### Caching Strategies
-    Lazy Loading
-    Write-through strategy
+    
+#### Lazy Loading strategy
+    On a cache-miss, Elasticache returns 'null'.
+    Your application must then retrieve the data and populate the cache.
+    Advantages: 
+    * Only the required data is cached.
+    * If the cache dies, the only downside is that there will be lots of cache-misses at first.
+    
+    Disadvantages:
+    * Cache miss penalty
+    * Data can become stale.  Data not updated automatically.  TTL can be applied.
+    
+#### Write-through strategy
+    Data is added to the cache whenever it is written to the database.
+    Advantages:
+    * Data is never stale
+    * Users might tolerate extra latency of writes to database
+    
+    Disadvantages:
+    * Write penalty of every update to the database
+    * If a node fails, the cache is empty again until it is added or updated in the database.
+    * Wasted resources if most data is writen bnut rarely read.
+
+Lazy Loading and Write-through strategies can be combined.
+
+    
+    
     
