@@ -129,4 +129,32 @@
 
     API Gateway can be configured as a SOAP Gateway passthrough.
 
+# From the [FAQ](https://aws.amazon.com/lambda/faqs/)
+    To improve performance, AWS Lambda may choose to retain an instance of your function and reuse it to serve a subsequent request, rather than creating a new copy.
+    Each Lambda function receives 500MB of non-persistent disk space in its own /tmp directory.
+    
+    AWS Lambda allows you to use normal language and operating system features, such as creating additional threads and processes.
+    
+    You can package the code (and any dependent libraries) as a ZIP and upload it using the AWS CLI from your local environment, or specify an Amazon S3 location where the ZIP file is located. Uploads must be no larger than 50MB (compressed).
+    
+    You can package any code (frameworks, SDKs, libraries, and more) as a Lambda Layer and manage and share them easily across multiple functions.
+    
+    AWS Lambda automatically monitors Lambda functions on your behalf, reporting real-time metrics through Amazon CloudWatch.
+    AWS Lambda automatically integrates with Amazon CloudWatch logs, creating a log group for each Lambda function.
+    
+    You can set your memory in 64MB increments from 128MB to 3GB.
+    You can set the timeout to any value between 1 second and 15 minutes.
+    
+    By default, each AWS Lambda function has a single, current version of the code. Clients of your Lambda function can call a specific version or get the latest implementation.
+    
+    An event source is an AWS service or developer-created application that produces events that trigger an AWS Lambda function to run.
+    
+    
+
+    
+    
+    
+    
+    
+    
 
