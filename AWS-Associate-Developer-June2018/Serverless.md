@@ -149,12 +149,31 @@
     
     An event source is an AWS service or developer-created application that produces events that trigger an AWS Lambda function to run.
     
+    You can invoke a Lambda function using a custom event through AWS Lambda’s invoke API. Only the function’s owner or another AWS account that the owner has granted permission can invoke the function.
     
+    When called through the AWS Mobile SDK, AWS Lambda functions automatically gain insight into the device and application that made the call through the ‘context’ object.
+    
+    You can deploy and manage your serverless applications using the AWS Serverless Application Model (AWS SAM). AWS SAM is a specification that prescribes the rules for expressing serverless applications on AWS. This specification aligns with the syntax used by AWS CloudFormation today and is supported natively within AWS CloudFormation as a set of resource types (referred to as "serverless resources"). These resources make it easier for AWS customers to use CloudFormation to configure and deploy serverless applications, using existing CloudFormation APIs. 
 
+    You can automate your serverless application’s release process using AWS CodePipeline and AWS CodeDeploy. 
     
+    You can use AWS Step Functions to coordinate a series of AWS Lambda functions in a specific order.  Step Functions will maintain state during executions for you.
     
+    X-Ray SDKs are currently available for Node.js and Java.
     
+    Lambda@Edge allows you to run code across AWS locations globally.
+    To use Lambda@Edge, you just upload your code to AWS Lambda and associate a function version to be triggered in response to Amazon CloudFront requests.
+    Lambda@Edge is optimized for latency sensitive use cases where your end viewers are distributed globally.
+    The difference between AWS Lambda@Edge and AWS Lambda behind Amazon API Gateway is that API Gateway and Lambda are regional services. Using Lambda@Edge and Amazon CloudFront allows you to execute logic across multiple AWS locations based on where your end viewers are located.
     
+    AWS Lambda has a default safety throttle for number of concurrent executions per account per region.
+    On exceeding the throttle limit, AWS Lambda functions being invoked synchronously will return a throttling error (429 error code).
     
+    On failure, Lambda functions being invoked synchronously will respond with an exception. Lambda functions being invoked asynchronously are retried at least 3 times. 
     
-
+    What happens if my Lambda function invocations exhaust the available policy?  On exceeding the retry policy for asynchronous invocations, you can configure a “dead letter queue” (DLQ) into which the event will be placed; in the absence of a configured DLQ the event may be rejected.  You can configure an Amazon SQS queue or an Amazon SNS topic as your dead letter queue.
+    
+    To enable VPC support, you need to specify one or more subnets in a single VPC and a security group as part of your function configuration. To disable VPC support, you need to update the function configuration and specify an empty list for the subnet and security group.
+    
+    Lambda functions provide access only to a single VPC. If multiple subnets are specified, they must all be in the same VPC. You can connect to other VPCs by peering your VPCs.
+    
