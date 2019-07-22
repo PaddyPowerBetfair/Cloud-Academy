@@ -15,7 +15,7 @@ Recommended reading for Associate Developer certification in 2019
 * Serverless Architectures with AWS Lambda 
 * Optimizing Enterprise Economics with Serverless Architectures
 * Running Containerized Microservices on AWS
-* Blue/Green Deployments on AWS
+* [Blue/Green Deployments on AWS](https://d1.awsstatic.com/whitepapers/AWS_Blue_Green_Deployments.pdf)
 
 
 # FAQs
