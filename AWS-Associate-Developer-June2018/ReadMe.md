@@ -1,3 +1,23 @@
+
+# Prepare for Your AWS Certification Exam
+https://aws.amazon.com/certification/certification-prep/
+
+## Whitepapers 
+https://aws.amazon.com/whitepapers/
+
+Recommended reading for Associate Developer certification in 2019 
+
+* AWS Security Best Practices
+* AWS Well-Architected Framework
+* Architecting for the Cloud: AWS Best Practices
+* Practicing Continuous Integration and Continuous Delivery on AWS Accelerating Software Delivery with DevOps
+* Microservices on AWS
+* Serverless Architectures with AWS Lambda 
+* Optimizing Enterprise Economics with Serverless Architectures
+* Running Containerized Microservices on AWS
+* Blue/Green Deployments on AWS
+
+
 # FAQs
 
 * https://aws.amazon.com/ec2/faqs/
