@@ -4,7 +4,7 @@
 ## Overview
 
     Fully managed database
-    Supports 'document' and 'key/valuye' models
+    Supports 'document' and 'key/value' models
     Everything is stored in 3 geographically distinct regions
     Everything is stored on SSD
     
