@@ -10,7 +10,7 @@ Recommended reading for Associate Developer certification in 2019
 * AWS Security Best Practices
 * AWS Well-Architected Framework
 * Architecting for the Cloud: AWS Best Practices
-* Practicing Continuous Integration and Continuous Delivery on AWS Accelerating Software Delivery with DevOps
+* [Practicing Continuous Integration and Continuous Delivery on AWS Accelerating Software Delivery with DevOps](https://d1.awsstatic.com/whitepapers/DevOps/practicing-continuous-integration-continuous-delivery-on-AWS.pdf)
 * Microservices on AWS
 * Serverless Architectures with AWS Lambda 
 * Optimizing Enterprise Economics with Serverless Architectures
