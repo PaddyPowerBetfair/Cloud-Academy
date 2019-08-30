@@ -12,6 +12,7 @@
     - A role may be called "myS3Role" and may allow "Read/Write Access to S3".  "myS3Role" may then be assumed by a user or an AWs service.
     - "Policy" is a document describing one or more permissions.
     - A user, group or role may each share the same policy.
+    - Power Users have access to all services but not users/groups.
 
 ### Other
     - IAM supports multi-factor authentication.
