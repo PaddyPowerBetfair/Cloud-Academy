@@ -4,7 +4,7 @@
 
 ### API Gateway Overview
     API Gateway is a fully managed service.
-    API GAteway can expose HTTP endpoints which define your ReSTful API.
+    API Gateway can expose HTTP endpoints which define your ReSTful API.
     API Gateway may forward incoming requests to Lambda, EC2 or Dynamo (for example).
     API Gateway makes is easy for developers to publish, maintain, monitor and secure APIs at any scale.
     Different endpoints can connect to different AWS services.
@@ -19,7 +19,7 @@
     For each Resource:
        * Select the appropriate HTTP method.
        * Set the security of your API endpoint.
-       * Choose the taret of your API endpoint (EC2, Lambda or DynamoDB for example)
+       * Choose the target of your API endpoint (EC2, Lambda or DynamoDB for example)
        * Set the request and response transformations.
     Deploy your new API to a "Stage" (for example: Production, Pre-production or Test).
     Note that API Gateway endpoints are created with AWS's own APIGateway domain by default.
@@ -30,7 +30,7 @@
     API Gateway responses are cached for a specified TTL in seconds.
 
 ### Same Origin Policy and CORS (Cross-origin Resource Sharing)
-    Under the "same origin policy", a web browser permits scripts contained in a first web-page to access dat in a second web page, but only if both web pages have the same origin.
+    Under the "same origin policy", a web browser permits scripts contained in a first web-page to access data in a second web page, but only if both web pages have the same origin.
     This is done to prevent Cross-Site Scripting attacks (XSS).
     This is enforced by web browsers but ignored by PostMan and `curl`.
     
@@ -69,12 +69,8 @@
 ## Lamba Version Control
     You can publish one or more versions of your lambda function.
     Each version of your function will have a different ARN.
-    Only the `$LATEST`version of your function may be edited.  All other versions cannot be edited.
-    Qualified ARN`s include the version of your lambda function.
-    Unqualified ARN`s do not end with the version of your function.
-    You can create an alias for particular versions.
-    For example: `v1` can be aliased as `Production`.  
-    This allows you to use `Production` as your reference to the version you wish to use.  When you wish to upgrade from `v1` to `v2` then reassign the `Production` alias from `v1` to `v2s include the version of your lambda function.
+    Only the `$LATEST` version of your function may be edited.  All other versions cannot be edited.
+    Qualified ARNs include the version of your lambda function.
     `Unqualified ARN`s do not end with the version of your function.
     You can create an alias for particular versions.
     For example: `v1` can be aliased as `Production`.  
@@ -89,7 +85,7 @@
     Step Functions provides a UI to arrange and visualise the components of your application as a series of steps.
     This makes it simple to build and run multistep applications.
     Step Functions automatically triggers and tracks each step.
-    Step Functions retries steps when there are error so your application executes in order and as expected.
+    Step Functions retries steps when there are errors so your application executes in order and as expected.
     Step Functions logs the state of each step.
     You define the steps of your workflow in the JSON-based Amazon States Language.
     After you have defined your sequence of steps in JSON, you hit "Create Resources" which will create AWS resources based on a CloudFormation template.
@@ -125,7 +121,7 @@
 
     API Gateway limits the steady-state request limit to 10,000 requests per second.
     The maximum concurrent requests is 5000 requests across all APIs within an AWS account.
-    If you exceed either limit, you will receive a `49 Too Many Requests` error response.
+    If you exceed either limit, you will receive a `429 Too Many Requests` error response.
 
     API Gateway can be configured as a SOAP Gateway passthrough.
 
@@ -153,11 +149,16 @@
     
     When called through the AWS Mobile SDK, AWS Lambda functions automatically gain insight into the device and application that made the call through the ‘context’ object.
     
-    You can deploy and manage your serverless applications using the AWS Serverless Application Model (AWS SAM). AWS SAM is a specification that prescribes the rules for expressing serverless applications on AWS. This specification aligns with the syntax used by AWS CloudFormation today and is supported natively within AWS CloudFormation as a set of resource types (referred to as "serverless resources"). These resources make it easier for AWS customers to use CloudFormation to configure and deploy serverless applications, using existing CloudFormation APIs. 
+    You can deploy and manage your serverless applications using the AWS Serverless Application Model (AWS SAM).
+    
+    AWS SAM is a specification that prescribes the rules for expressing serverless applications on AWS.
+    This specification aligns with the syntax used by AWS CloudFormation today and is supported natively within AWS CloudFormation as a set of resource types (referred to as "serverless resources").
+    These resources make it easier for AWS customers to use CloudFormation to configure and deploy serverless applications, using existing CloudFormation APIs. 
 
     You can automate your serverless application’s release process using AWS CodePipeline and AWS CodeDeploy. 
     
-    You can use AWS Step Functions to coordinate a series of AWS Lambda functions in a specific order.  Step Functions will maintain state during executions for you.
+    You can use AWS Step Functions to coordinate a series of AWS Lambda functions in a specific order.
+    Step Functions will maintain state during executions for you.
     
     X-Ray SDKs are currently available for Node.js and Java.
     
@@ -169,11 +170,17 @@
     AWS Lambda has a default safety throttle for number of concurrent executions per account per region.
     On exceeding the throttle limit, AWS Lambda functions being invoked synchronously will return a throttling error (429 error code).
     
-    On failure, Lambda functions being invoked synchronously will respond with an exception. Lambda functions being invoked asynchronously are retried at least 3 times. 
+    On failure, Lambda functions being invoked synchronously will respond with an exception.
+    Lambda functions being invoked asynchronously are retried at least 3 times. 
     
-    What happens if my Lambda function invocations exhaust the available policy?  On exceeding the retry policy for asynchronous invocations, you can configure a “dead letter queue” (DLQ) into which the event will be placed; in the absence of a configured DLQ the event may be rejected.  You can configure an Amazon SQS queue or an Amazon SNS topic as your dead letter queue.
+    What happens if my Lambda function invocations exhaust the available policy?
+    On exceeding the retry policy for asynchronous invocations, you can configure a “dead letter queue” (DLQ) into which the event will be placed; in the absence of a configured DLQ the event may be rejected.
+    You can configure an Amazon SQS queue or an Amazon SNS topic as your dead letter queue.
     
-    To enable VPC support, you need to specify one or more subnets in a single VPC and a security group as part of your function configuration. To disable VPC support, you need to update the function configuration and specify an empty list for the subnet and security group.
+    To enable VPC support, you need to specify one or more subnets in a single VPC and a security group as part of your function configuration.
+    To disable VPC support, you need to update the function configuration and specify an empty list for the subnet and security group.
     
-    Lambda functions provide access only to a single VPC. If multiple subnets are specified, they must all be in the same VPC. You can connect to other VPCs by peering your VPCs.
+    Lambda functions provide access only to a single VPC.
+    If multiple subnets are specified, they must all be in the same VPC.
+    You can connect to other VPCs by peering your VPCs.
     
