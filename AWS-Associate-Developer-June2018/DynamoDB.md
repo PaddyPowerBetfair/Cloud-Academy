@@ -212,3 +212,5 @@ Q: Q: What is the maximum throughput I can provision for a single DynamoDB table
 A: If you want to exceed throughput rates of 10,000 write capacity units or 10,000 read capacity units for an individual table, you must first contact Amazon.
 If you want to provision more than 20,000 write capacity units or 20,000 read capacity units from a single subscriber account, you must first contact us to request a limit increase.
 
+[Link to the DynamoDB API](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html)
+
