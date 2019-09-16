@@ -184,5 +184,31 @@
 Lazy Loading and Write-through strategies can be combined.
 
     
-    
-    
+# From the FAQ
+[Amazon DynamoDB FAQs](https://aws.amazon.com/dynamodb/faqs/)
+
+Q: What kind of query functionality does DynamoDB support?
+
+A: DynamoDB supports GET/PUT operations by using a user-defined primary key.
+The primary key is the only required attribute for items in a table.
+You specify the primary key when you create a table, and it uniquely identifies each item.
+DynamoDB also provides flexible querying by letting you query on non-primary key attributes using global secondary indexes and local secondary indexes.
+
+
+Q: Q: How do I update and query data items with DynamoDB?
+
+A: After you have created a table using the DynamoDB console or CreateTable API, you can use the PutItem or BatchWriteItem APIs to insert items.
+Then, you can use the GetItem, BatchGetItem, or, if composite primary keys are enabled and in use in your table, the Query API to retrieve the items you added to the table.
+
+
+Q: How am I charged for my use of DynamoDB?
+
+A: Note that you are charged by the hour for the throughput capacity, whether or not you are sending requests to your table. 
+If you would like to change your table’s provisioned throughput capacity, you can do so using the AWS Management Console, the UpdateTable API, or the PutScalingPolicy API for auto scaling
+
+
+Q: Q: What is the maximum throughput I can provision for a single DynamoDB table?
+
+A: If you want to exceed throughput rates of 10,000 write capacity units or 10,000 read capacity units for an individual table, you must first contact Amazon.
+If you want to provision more than 20,000 write capacity units or 20,000 read capacity units from a single subscriber account, you must first contact us to request a limit increase.
+
