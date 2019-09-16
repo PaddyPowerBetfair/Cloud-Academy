@@ -2,14 +2,14 @@
 
 ## Overview
     KMS is a managed service.
-    KMS allows you to create an control encryption keys used to encrypt your data.
+    KMS allows you to create and control encryption keys used to encrypt your data.
     KMS is integrated with other AWS services:
       E.G.: EBS, S3, RedShift, Elastic Transcoder, Workmail, RDS
     
 ## How to create a Customer Master Key
     KMS is found in IAM in the AWS Console.
     Create a user in IAM
-    Craete 'myKMSGroup'.
+    Create 'myKMSGroup'.
     Users in this group will have access to KMS (e.g. our trusted security people)
     User1 is 'MyKeyManager'.  This person will manage KMS keys but have no permission to encrypt or decrypt.
     User2 is 'MyKeyUser'.  This person can encrypt/decrypt but no permission to manage the keys.
@@ -28,7 +28,7 @@
 ## KMS API
     Create an EC2 Instance
     Put the instance in a security group that has port 22 open.
-    'MyKeyUser' is the user who wil do the encrypting.
+    'MyKeyUser' is the user who will do the encrypting.
     ssh into the EC2 instance.
 
     $ sudo su -
@@ -53,7 +53,7 @@
     The Customer Master Key encrypts the Envelope Key
     
     To decrypt:
-    Ther Customer Master Key decrypts the Envelope key
+    The Customer Master Key decrypts the Envelope key
     The decrypted Envelope Key decrypts your encrypted data.
     
     
