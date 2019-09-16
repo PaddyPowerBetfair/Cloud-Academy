@@ -32,7 +32,7 @@
     When using a composite key, all items are located in the same place (based on the partition key) and are sorted according to the sort key.
     
     IAM is used to manage access to Dynamo.
-    You can restrict user access to only their own items in Dynamo by using 'IAM Consitions'.
+    You can restrict user access to only their own items in Dynamo by using 'IAM Conditions'.
     To do this, you add a 'Condition' to an IAM policy.
     The 'condition' will enforce that only 'items' with a partition key that matches a particular 'userId' may be accessed.
     
@@ -65,11 +65,11 @@
     You may also use a Projection Expression which allows you to return certain attributes. 
     
     Results are sorted by sort key.
-    Numerics are sorted in ascesing order by default.
+    Numerics are sorted in ascending order by default.
     Set 'ScanIndexForward' to false if you want to reverse the order of the results.
     
     Queries are Eventually Consistent by default.
-    Queriues can be set to be Strongly Consistent.
+    Queries can be set to be Strongly Consistent.
     
 ### Scans
     By default, scans return all items in the table.
@@ -102,7 +102,7 @@
     Example 1:
     You need to read 80 items per second.
     You need Strongly Consistent Reads.
-    Each item is 2KB in size.
+    Each item is 3KB in size.
     What is the required RCU of your table?
     
     Answer:
@@ -174,12 +174,12 @@
     Data is added to the cache whenever it is written to the database.
     Advantages:
     * Data is never stale
-    * Users might tolerate extra latency of writes to database
+    * Users need to tolerate extra latency of writes to database (Is that an advantage?)
     
     Disadvantages:
     * Write penalty of every update to the database
     * If a node fails, the cache is empty again until it is added or updated in the database.
-    * Wasted resources if most data is writen bnut rarely read.
+    * Wasted resources if most data is written but rarely read.
 
 Lazy Loading and Write-through strategies can be combined.
 
