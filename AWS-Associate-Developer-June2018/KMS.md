@@ -56,4 +56,21 @@
     The Customer Master Key decrypts the Envelope key
     The decrypted Envelope Key decrypts your encrypted data.
     
+# From the FAQ
+[https://aws.amazon.com/kms/faqs/](https://aws.amazon.com/kms/faqs/)
+
+    Q: Can I delete a key from AWS KMS?
+    A Yes. You can schedule a customer master key and associated metadata that you created in AWS KMS for deletion, with a configurable waiting period from 7 to 30 days.
+    This waiting period allows you to verify the impact of deleting a key on your applications and users that depend on it. 
+    The default waiting period is 30 days.
+    You can cancel key deletion during the waiting period.
+    The key cannot be used if it is scheduled for deletion until you cancel the deletion during the waiting period.
+    The key gets deleted at the end of the configurable waiting period if you don’t cancel the deletion.
+    Once a key is deleted, you can no longer use it.
+    All data protected under a deleted master key is inaccessible.
+
+    Q: Can I use AWS KMS to help manage encryption of data outside of AWS cloud services?
+    A: Yes. AWS KMS is supported in AWS SDKs, AWS Encryption SDK, the Amazon DynamoDB Client-side Encryption, and the Amazon S3 Encryption Client to facilitate encryption of data within your own applications wherever they run. 
     
+    Q: Is there a limit to the number of keys I can create in AWS KMS?
+    A: You can create up to 1000 customer master keys per account per region. 
