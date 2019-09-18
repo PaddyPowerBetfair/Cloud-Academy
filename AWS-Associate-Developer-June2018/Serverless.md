@@ -184,3 +184,23 @@
     If multiple subnets are specified, they must all be in the same VPC.
     You can connect to other VPCs by peering your VPCs.
     
+## From the whitepapers
+[https://d1.awsstatic.com/whitepapers/serverless-architectures-with-aws-lambda.pdf](https://d1.awsstatic.com/whitepapers/serverless-architectures-with-aws-lambda.pdf)
+    
+    Your Lambda function is also provided with a context object. The context
+    object allows your function code to interact with the Lambda execution
+    environment.
+
+    A Lambda function can be executed synchronously or asynchronously. You
+    choose this using the parameter InvocationType that’s provided when
+    invoking a Lambda function. 
+    
+    You can allocate 128 MB of RAM up to 1.5 GB of RAM to your
+    Lambda function. Not only will this dictate the amount of memory available to 
+    your function code during execution, but the same dial will also influence the
+    CPU and network resources available to your function.
+    
+    Selecting the appropriate memory allocation is a very important step when
+    optimizing the price and performance of any Lambda function. 
+    
+    An alias is simply a pointer to a specific version number.
