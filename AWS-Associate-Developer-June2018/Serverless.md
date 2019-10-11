@@ -204,3 +204,49 @@
     optimizing the price and performance of any Lambda function. 
     
     An alias is simply a pointer to a specific version number.
+    
+    A Lambda function has two broad options for outbound network connectivity: Default and VPC.
+    
+    If your use case requires private connectivity, use the VPC option with Lambda.
+
+    If your Lambda function doesn’t require connectivity to any privately deployed
+    resources, we recommend you select the default networking option. Choosing the
+    VPC option (the alternatibe to the default) will cause an increase in Lambda
+    cold start times if your Lambda function invocation patterns require a new ENI
+    to be created just in time. (ENI creation can take many seconds today (2016).)
+    
+    Environment Variables - For any sensitive information that will be stored as a
+    Lambda function environment variable, we recommend you encrypt those
+    values using the AWS Key Management Service (AWS KMS) prior to function
+    creation, storing the encrypted cyphertext as the variable value.
+    
+    Each version of your Lambda function can have its own environment variable
+    values. However, once the values are established for a numbered Lambda
+    function version, they cannot be changed.
+    
+    Dead Letter Queues - If an exception occurs when trying to invoke your function in
+    these models, the invocation will be attempted two more times (with back-off between the retries).
+    After the third attempt, the event is either discarded or placed onto a dead
+    letter queue, if you configured one for the function.
+    
+    A dead letter queue is either an SNS topic or SQS queue that you have
+    designated as the destination for all failed invocation events. 
+    Once your function is able to be invoked again, you can target those failed
+    events in the dead letter queue for reprocessing.
+    
+    Lambda function is billed based on execution time in 100-ms increments,
+    avoiding lengthy timeouts for functions can prevent you from being billed while
+    a function is simply waiting to timeout.
+    
+    Best Practices:
+    One IAM Role per Function
+    Temporary AWS Credentials
+    Persist Secrets (Systems Managed Parameter Store)
+    Use API Gateway
+    Deployment Access Control - Treat access to the Lambda APIs that enable function code/aliases with extreme sensitivity.
+    
+    Reliability Best Practices - TBC
+    
+    
+    
+
