@@ -246,6 +246,15 @@
     Deployment Access Control - Treat access to the Lambda APIs that enable function code/aliases with extreme sensitivity.
     
     Reliability Best Practices - TBC
+    High Availability - The availability posture of your Lambda function depends on the number of Availability Zones it
+    can be executed in. If your function uses the default network environment, it is automatically available to execute 
+    within all of the Availability Zones in that AWS Region. Nothing else is required to configure high availability for 
+    your function in the default network environment. If your function is deployed within your own VPC, the subnets (and 
+    their respective Availability Zones) define if your function remains available in the event of an Availability Zone 
+    outage.
+    Recovery - Take advantage of Dead Letter Queues and implement how to process events placed on
+    that queue after recovery occurs.
+    
     
     
     
