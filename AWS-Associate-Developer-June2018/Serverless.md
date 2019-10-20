@@ -1,5 +1,10 @@
 # Introduction to Serverless Computing
 
+## Links
+[API Operations available to Lambda](https://docs.aws.amazon.com/lambda/latest/dg/API_Operations.html)
+
+[Environment Variables available to Lambda](https://docs.aws.amazon.com/lambda/latest/dg/lambda-environment-variables.html)
+
 ## API Gateway  
 
 ### API Gateway Overview
