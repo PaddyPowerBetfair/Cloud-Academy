@@ -135,7 +135,12 @@
     Data is written to the cache at the same time as the Dynamo backend.
     Allows you to point your Dynamo API at the DAX cluster.
     If your read operation is a cache-miss, DAX performs an Eventually Consistent read from Dynamo DB.
+    The DAX cluster must be in the same VPC as the EC2 instance which is hosting the DAX Client (i.e. your application which is making read requests) 
     
+    DAX Cluster maintains two caches.
+      1) Item cache.
+      2) Scan and Query cache.  Results of queries are stored in the cache so that the result set can be returned if the same query is made more than once.
+      
     Could reduce your provisioned Read Capacity of your Dynamo DB.
     Read Intensive apps only - Not needed if you don't need low-latency of your reads.
     
