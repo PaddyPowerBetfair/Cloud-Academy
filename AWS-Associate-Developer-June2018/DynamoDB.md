@@ -41,17 +41,22 @@
     
 ## Dynamo DB Indexes
     Indexes allow you to perform fast queries against specific columns.
-    
-    Local Secondary Indexes:
+        
+    Local Secondary Indexes (LSI):
     * can only be created when the table is created
     * cannot be added, removed or modified
     * use the same partition key as your table
     * use a different sort key
+    * You can do Strongly Consistent reads on LSIs
+    * LSIs consume Read and Write capacity from the main table and have the same WCU and RCU provisioned throughput.
     
-    Global Secondary Indexes:
+    Global Secondary Indexes (GSI):
     * are more flexible
     * can be created AT or AFTER table creation
     * can be based on a different partition key and different sort key to the partition key of your table.
+    * You cannot do Strongly Consistent reads on GSIs
+    * GSIs consume Read and Write capacity independently from the main table and have their own WCU and RCU provisioned throughput.
+    
     
 ## Queries and Scans
 ### Queries
