@@ -191,9 +191,15 @@
     * If a node fails, the cache is empty again until it is added or updated in the database.
     * Wasted resources if most data is written but rarely read.
 
-Lazy Loading and Write-through strategies can be combined.
+    Lazy Loading and Write-through strategies can be combined.
 
-### Common Errors
+## DynamoDb Streams
+    Used to capture changes in your DynamoDb table.
+    Changes are stored in Dynamobo Streams for 24 hours.
+    DynamoDb Streams can act as a trigger for Lambda functions.
+    You can set up a relation between two Dynamo tables.  If one table is updated then than another item in the other table is updated.
+
+## Common Errors
 [Common Errors](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/CommonErrors.html)
 
 [Secondary Indexes Limits in DynamoDb](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-secondary-indexes)
