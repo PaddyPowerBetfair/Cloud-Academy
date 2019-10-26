@@ -197,7 +197,28 @@
     Used to capture changes in your DynamoDb table.
     Changes are stored in Dynamobo Streams for 24 hours.
     DynamoDb Streams can act as a trigger for Lambda functions.
+    DynamoDb Streams can publish either the primary key, the new item, the old item or both the new and old item.
     You can set up a relation between two Dynamo tables.  If one table is updated then than another item in the other table is updated.
+
+
+## DynamoDb Auto-scaling and On-demand
+### DynamoDb Auto-scaling
+    When creating a table, auto-scaling is turned on be default.  (Scaling at 70% utilisation)
+    DynamoDb publishes consumed capacity metrics to CloudWatch.  CloudWatch can raise an alarm which triggers an auto-scaling event in DynamoDb.
+    If desired, auto-scaling can be turned off at any time.  
+    If has been reported that auto-scaling can sometimes react too slowely.  Typically a scaling event occurs 10 mins after your capacity limit has been hit.
+    
+### DynamoDb On-demand
+    "On-demand" offers a pay-per-request model.
+    This will affect your bill.
+    Useful if your traffic is unpredictable and can regularly spike.
+    You can change a table from "Provisioned Capacity" to "On-demand" once per day only.
+    With "On-demand", there is no upper limit in your RCU and WCU.  Remember that you pay for that!
+    
+    
+    
+    
+    
 
 ## Common Errors
 [Common Errors](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/CommonErrors.html)
