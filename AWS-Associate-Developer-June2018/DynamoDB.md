@@ -188,6 +188,19 @@
 
 Lazy Loading and Write-through strategies can be combined.
 
+### Common Errors
+[Common Errors](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/CommonErrors.html)
+
+[Secondary Indexes Limits in DynamoDb](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-secondary-indexes)
+
+[Read/Write Capacity Mode and Throughput Limits in DynamoDb](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#default-limits-throughput-capacity-modes)
+
+[Table Limits](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-tables)
+
+[Item Limits](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-items)
+
+[API Specific Limits](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-api)
+    
     
 # From the FAQ
 [Amazon DynamoDB FAQs](https://aws.amazon.com/dynamodb/faqs/)
