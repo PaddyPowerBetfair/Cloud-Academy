@@ -49,14 +49,16 @@
     * use a different sort key
     * You can do Strongly Consistent reads on LSIs
     * LSIs consume Read and Write capacity from the main table and have the same WCU and RCU provisioned throughput.
-    
+    * You can define up to 5 local secondary indexes per table (by default)
+
     Global Secondary Indexes (GSI):
     * are more flexible
     * can be created AT or AFTER table creation
     * can be based on a different partition key and different sort key to the partition key of your table.
     * You cannot do Strongly Consistent reads on GSIs
     * GSIs consume Read and Write capacity independently from the main table and have their own WCU and RCU provisioned throughput.
-    
+    * A maximum of 20 global secondary indexes are allowed per table. (by default)
+
     
 ## Queries and Scans
 ### Queries
