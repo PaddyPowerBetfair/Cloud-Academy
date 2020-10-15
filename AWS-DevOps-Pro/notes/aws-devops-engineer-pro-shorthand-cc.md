@@ -33,82 +33,82 @@
 
 ## CodeBuild ##
 
-Can use different sources: git, github enterprise, codecommit, bitbucket
-Reference type is important - can pick from branch, git tag, commit id
-commit id = specific commit
-tag = verersion
-branch = ongoing code
-environment can be managed or custom docker image
-codebuild is good for performance, integration, load testing (max 8 hour build)
-lambda not as good for long running builds
-codebuild runs on a queue and you can specify a timeout on it (default 8 hours)
-buildspec.yml must be present in source root or in specified location
-can log to cloudwatch and s3
-elastic, serverless, billed by second
+- Can use different sources: git, github enterprise, codecommit, bitbucket
+- Reference type is important - can pick from branch, git tag, commit id
+- commit id = specific commit
+- tag = verersion
+- branch = ongoing code
+- environment can be managed or custom docker image
+- codebuild is good for performance, integration, load testing (max 8 hour build)
+- lambda not as good for long running builds
+- codebuild runs on a queue and you can specify a timeout on it (default 8 hours)
+- buildspec.yml must be present in source root or in specified location
+- can log to cloudwatch and s3
+- elastic, serverless, billed by second
 
 ### buildspec.yml ###
 
-version
+    version
 
-run-as: linux-user-name
-env:
-    variables
-    parameter-store
-    git-credential-helper
+    run-as: linux-user-name
+    env:
+        variables
+        parameter-store
+        git-credential-helper
 
-phases
-    install
-        run-as
-        runtime-versions
-        commands
-        finally
-    pre_build
-        run-as
-        commands
-        finally
-    build
-        run-as
-        commands
-        finally
-    post_build
-        run-as
-        commands
-        finally
+    phases
+        install
+            run-as
+            runtime-versions
+            commands
+            finally
+        pre_build
+            run-as
+            commands
+            finally
+        build
+            run-as
+            commands
+            finally
+        post_build
+            run-as
+            commands
+            finally
 
-artifacts:
-    files
-    name
-    discard-paths
-    base-directory
-    secondary-artifacts
-        artifact2:
-            files
-            name
-            discard-paths
-            base-directory
-        artifact3:
-            files
-            name
-            discard-paths
-            base-directory
+    artifacts:
+        files
+        name
+        discard-paths
+        base-directory
+        secondary-artifacts
+            artifact2:
+                files
+                name
+                discard-paths
+                base-directory
+            artifact3:
+                files
+                name
+                discard-paths
+                base-directory
 
-cache: 
-    file
+    cache: 
+        file
 
 
 ### build phases ###
 
-submitted
-queued
-provisioning
-download
-install
-pre
-build
-post
-upload artifacts
-finalizing
-completed
+- submitted
+- queued
+- provisioning
+- download
+- install
+- pre
+- build
+- post
+- upload artifacts
+- finalizing
+- completed
 
 ### samples ###
 
@@ -116,10 +116,10 @@ definitely know how to push to ECR from CodeBuild
 
 ### env variables ###
 
-default region
-region
-codebuild_build_arn
-etc
+- default region
+- region
+- codebuild_build_arn
+- etc
 
 
 can call `printenv` from codebuild to dump env variables
@@ -130,41 +130,41 @@ can reference param store SSM if parameter - just pass name of param as value
 
 ### artifacts ###
 
-uploaded to s3
-use artifacts section in buildspec
-can be named using `name` property
-can be encrypted with kms
-s3 can also encrypt
+- uploaded to s3
+- use artifacts section in buildspec
+- can be named using `name` property
+- can be encrypted with kms
+- s3 can also encrypt
 
 ### cloudwatch integration ###
 
-logs
-new log stream per build
-metrics
-success / fail / duration
-events
-can schedule builds using rules
-can use codebuild as a source and use things like build state changed
+- logs
+- new log stream per build
+- metrics
+- success / fail / duration
+- events
+- can schedule builds using rules
+- can use codebuild as a source and use things like build state changed
 
 ## CodeDeploy ##
 
-CodeDeploy works on prem and on EC2 with CodeDeploy Agent
-Agent is continuously polling for work
-CodeDeploy sends appspec.yml
-App pulled from github or s3
-Ec2 runs deployment instructions
-CodeDeploy Agent reports success/failure
-can have deployment group for different environments (dev/prod)
-blue/green only works with ec2 - not on prem
-codedeploy supports lambda/ec2
-codedeploy does not provision resources 
-codedeploy knows how to deploy to EC2 envs based on TAGS
-in place/blue green at deployment group level
-s3 bucket where app is stored must have versioning enabled
-appspec.yml must exist in zip file in root if using s3
-oneatatime, halfatatime, allatonce are in-place options
-deployment configuration can be set up in deployment group. can specify how many instances must remain healthy at a given time in pct or units
-validateservice used for health check
+- CodeDeploy works on prem and on EC2 with CodeDeploy Agent
+- Agent is continuously polling for work
+- CodeDeploy sends appspec.yml
+- App pulled from github or s3
+- Ec2 runs deployment instructions
+- CodeDeploy Agent reports success/failure
+- can have deployment group for different environments (dev/prod)
+- blue/green only works with ec2 - not on prem
+- codedeploy supports lambda/ec2
+- codedeploy does not provision resources 
+- codedeploy knows how to deploy to EC2 envs based on TAGS
+- in place/blue green at deployment group level
+- s3 bucket where app is stored must have versioning enabled
+- appspec.yml must exist in zip file in root if using s3
+- oneatatime, halfatatime, allatonce are in-place options
+- deployment configuration can be set up in deployment group. can specify how many instances must remain healthy at a given time in pct or units
+- validateservice used for health check
 
 hooks env variables
     application namne
@@ -206,10 +206,10 @@ https://d1.awsstatic.com/whitepapers/DevOps/practicing-continuous-integration-co
 
 ### lambda ###
 
-lambda supports linear and canary deployment configurations
-appspec only supports before and after allow traffic
-beforeallowtraffic hook allows another lambda to call your lambda to validate (e.g. check db connectivity, make sure its ok to start deployment)
-afterallowtraffic would be health checks
+- lambda supports linear and canary deployment configurations
+- appspec only supports before and after allow traffic
+- beforeallowtraffic hook allows another lambda to call your lambda to validate (e.g. check db connectivity, make sure its ok to start deployment)
+- afterallowtraffic would be health checks
 
 
 ## code pipeline ##
@@ -218,14 +218,14 @@ creates a rule to integrate codecommit with pipeline as a source
 
 ### artifacts, encryption, s3 ###
 
-custom vs default s3 location - default creates new bucket each time
-encrypted by aws kms by default
-can also encrypt using cms
+- custom vs default s3 location - default creates new bucket each time
+- encrypted by aws kms by default
+- can also encrypt using cms
 can deploy artifacts to s3 bucket using an s3 stage
     can extract before deploy
     acl
     cache control
-cloudwatch events
+- cloudwatch events
     state change
     stage exec state change
     action exec state change
@@ -233,9 +233,9 @@ cloudwatch events
 sequential / parallel stages decided by run order
 if you have mutliple sources and one triggers, all will be refreshed
 
-lambda pipeline APIs: PutJobSuccessResult
-PutJobFailureResult
-make sure to use contiunuation token
+- lambda pipeline APIs: PutJobSuccessResult
+- PutJobFailureResult
+- make sure to use contiunuation token
 
 cloudformation
 
