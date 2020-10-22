@@ -336,6 +336,202 @@ delete = default behaviour
 when deleting, if snapshot, will get create_in_progress event for snapshot before delete_in_progress for resource
 if retain, we get delete_skipped event
 
+### dependson ###
+
+know syntax
+
+### lambda ###
+
+know inline (`zipfile`) vs s3 (`code`) 
+
+if using s3, we can use `s3objectversion` to deploy a specific version of the file
+
+### custom resources ###
+
+use when
+
+- aws resource not available in cfn
+- on prem resource
+- empty s3 bucket before being deleted (cfn cannot deleted non-empty s3)
+- fetch an ami id
+
+cfn -> custom resource ->lambda
+
+event on create, update, delete
+
+anatomy of event (create)
+
+    {
+       "RequestType" : "Create",
+       "RequestId" : "unique id for this create request",
+       "ResponseURL" : "pre-signed-url-for-create-response",
+       "ResourceType" : "Custom::MyCustomResourceType",
+       "LogicalResourceId" : "name of resource in template",
+       "StackId" : "arn:aws:cloudformation:us-east-2:namespace:stack/stack-name/guid",
+       "ResourceProperties" : {
+          "key1" : "string",
+          "key2" : [ "list" ],
+          "key3" : { "key4" : "map" }
+       }
+    }        
+
+to use custom resource, specify lambda arn as `servicetoken`
+
+must send response to response url
+
+example response
+
+    {
+       "Status" : "SUCCESS",
+       "RequestId" : "unique id for this create request (copied from request)",
+       "LogicalResourceId" : "name of resource in template (copied from request)",
+       "StackId" : "arn:aws:cloudformation:us-east-2:namespace:stack/stack-name/guid (copied from request)",
+       "PhysicalResourceId" : "required vendor-defined physical id that is unique for that vendor",
+       "Data" : {
+          "keyThatCanBeUsedInGetAtt1" : "data for key 1",
+          "keyThatCanBeUsedInGetAtt2" : "data for key 2"
+       }
+    }
+
+### status codes ###
+
+- create_complete
+- create_in_progress
+- created_failed
+- delete_completed
+- delete_failed
+- delete_in_progress
+- review_in_progress - not important
+- rollback_complete
+- rollback_failed
+- rollback_in_progress
+- update_complete
+- update_complete_cleanup_in_progress - when resources are replaced or removed
+- updated_in_progress
+- update_rollback_complete
+- update_rollback_failed - most important. https://aws.amazon.com/blogs/devops/continue-rolling-back-an-update-for-aws-cloudformation-stacks-in-the-update_rollback_failed-state/ / https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-update-rollback-failed
+- update_rollback_in_progress
+
+
+### capability ###
+
+InsufficientCapabilitiesException - you have not provided the capability provided for the template to work
+
+CAPABILITY_IAM
+
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html
+
+https://stackoverflow.com/questions/38474285/setting-the-capability-for-aws-cloudformation-template-validate
+
+### cfn-hup and cfn-metdata ###
+
+gives us a way to change ec2 instances without replacing
+
+uses cfn init and metadata block
+
+cfn-hup polls for metadata every `interval` minutes
+
+`cfn-get-metadata --stack StackName --resource ResourceName --region eu-west-1`
+
+### stack policies ###
+
+prevents update/delete of stack resources
+
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html
+
+
+## Elastic Beanstalk ##
+
+### eb cli ###
+
+`eb init` to intiialize 
+- specify region
+- specify projct name
+- specify platform
+- specify version
+- setup ssh
+
+creates .elasticbeanstalk folder with config.yml with all of the above
+
+`eb create dev-env`
+
+zips code and uploads to eb
+
+this creates:
+
+- s3 bucket
+- security group
+- load balancer
+- launch config
+- autoscaling group
+- ec2 instances
+- auto scaling policy x2 (in and out)
+- cloudwatch alarm x2 (low and high traffic)
+
+`eb open` opens app in browser
+
+`eb status` shows status of app; health green 
+
+`eb health` shows instances' helath
+
+`eb logs` shows logs of application
+
+`eb deploy` zips app and uploads to s3, deploys to eb
+
+`eb terminate` deletes the environment
+
+
+### saved configurations ###
+
+to create a saved configuration of dev-env environment
+
+`eb config save dev-env --cfg initial-configuration`
+
+saves config file as yml in .elasticbeanstalk/saved_configs
+
+    EnvironmentConfigurationMetadata:
+      Description: Saved configuration from a multicontainer Docker environment created with the Elastic Beanstalk Management Console
+      DateCreated: '1520633151000'
+      DateModified: '1520633151000'
+    Platform:
+      PlatformArn: arn:aws:elasticbeanstalk:us-east-2::platform/Java 8 running on 64bit Amazon Linux/2.5.0
+    OptionSettings:
+      aws:elasticbeanstalk:command:
+        BatchSize: '30'
+        BatchSizeType: Percentage
+      aws:elasticbeanstalk:sns:topics:
+        Notification Endpoint: me@example.com
+      aws:elb:policies:
+        ConnectionDrainingEnabled: true
+        ConnectionDrainingTimeout: '20'
+      aws:elb:loadbalancer:
+        CrossZone: true
+      aws:elasticbeanstalk:environment:
+        ServiceRole: aws-elasticbeanstalk-service-role
+      aws:elasticbeanstalk:application:
+        Application Healthcheck URL: /
+      aws:elasticbeanstalk:healthreporting:system:
+        SystemType: enhanced
+      aws:autoscaling:launchconfiguration:
+        IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+        InstanceType: t2.micro
+        EC2KeyName: workstation-uswest2
+      aws:autoscaling:updatepolicy:rollingupdate:
+        RollingUpdateType: Health
+        RollingUpdateEnabled: true
+    EnvironmentTier:
+      Type: Standard
+      Name: WebServer
+    AWSConfigurationTemplateVersion: 1.1.0.0
+    Tags:
+      Cost Center: WebApp Dev
+
+`eb setenv ENV_VAR=blah` sets an environment variable
+
+`eb config put prod` uploads prod.cfg.yml to eb saved configurations
+
+`eb config dev-env --cfg prod` sets the dev-env config to prod (the uploaded one, not the file)
+
 ### ssm ###
 
 param syntax:
