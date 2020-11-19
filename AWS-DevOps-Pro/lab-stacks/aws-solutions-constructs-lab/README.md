@@ -1,4 +1,6 @@
 
+# Rapid and flexible Infrastructure as Code using the AWS CDK with AWS Solutions Constructs
+
 AWS DevOps Blog Post - https://aws.amazon.com/blogs/devops/rapid-flexible-infrastructure-with-solutions-constructs-cdk/
 
 This labs guides you through the steps required to deploy a application which consumes from Kinesis and publishes to Dynamodb.
