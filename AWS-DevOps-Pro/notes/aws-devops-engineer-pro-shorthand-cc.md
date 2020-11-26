@@ -532,6 +532,117 @@ saves config file as yml in .elasticbeanstalk/saved_configs
 
 `eb config dev-env --cfg prod` sets the dev-env config to prod (the uploaded one, not the file)
 
+
+
+### .ebextensions ###
+
+this is  a folder used to config environment
+
+.config yaml files
+
+option_settings:
+  aws:autoscaling:asg: <-- namespace
+    minSize: 1         <-- properties
+    maxSize: 10
+    cooldown: 240
+
+#### commands ####
+
+commands and container commands
+commands
+  execute on ec2 instance before app/web server setup and before app version file is extracted
+  e.g. shell commands
+container commands
+  affect source code. run after app and server are set up but before app version is deployed
+  e.g. modify source code / local config files
+  leader_only: only run on one instance
+https://stackoverflow.com/questions/35788499/what-is-difference-between-commands-and-container-commands-in-elasticbean-talk
+
+### etc ###
+
+webserver settings
+- application version lifecycle
+- - limit versions to e.g. 200
+- - limit by age, e.g. 180 days
+- - retain in s3 or delete from s3
+- - never deletes deployed
+
+can clone full env
+
+terminate environment (eb terminate)
+
+rebuild environment (eb terminate and eb deploy)
+
+- managed updates (os patches)
+- - weekly window
+- - update level
+- - instance replacement
+
+### deployment modes ###
+
+- modes:
+- - single instance
+- - high availability (multi az)
+
+all at once - downtime
+  no additional cost
+rolling - n at a time
+  running both versions simultaneously
+  no additional cost
+rolling with additional batches - spin up new instances
+  running both simultaneously
+  adds n new instances, terminates n old instances, etc
+  always at at least full capacity
+  additional cost
+immutable - basically b/g
+  double capacity
+  quick rollback
+  longer deployment
+
+
+different settings exist for app deployment and configuration updates
+
+whenever changing vm settings / vpc instances need to be replaced
+options are:
+  rolling bases on health
+  rolling based on time
+  immutable
+
+can ignore health check
+healthy threshold (ok, warning, error?)
+
+EB allows you to swap the url of 2 environments. this is a dns change
+
+### workers ###
+
+different "tier" from web server (seems like important language to remember for exam)
+long running workloads or scheduled workloads using cron.yml
+sets up worker queue and dead letter queue for us
+worker consumes from worker queue and publishes to dlq if fail
+
+
+actual blue/green is possible by cloning env and using something like route53 to switch over to green
+
+### docker ###
+
+multi container 
+used to standardize deployments
+spins up an ecs cluster for us
+Dockerrun.aws.json
+
+## lambda ##
+
+max timeout 15 mins
+
+
+
+### config precedence ###
+
+1. environment settings
+2. saved configs
+3. .ebextensions
+4. default values
+
 ### ssm ###
 
 param syntax:
@@ -541,3 +652,4 @@ naming : /service/paramname
 if params change, theyre resolved on update even if no other changes in stack
 
 aws ssm get-parameters-by-path --path /aws/service/ami-amazon-linux-latest --query 'Paramters[].Name'
+
